@@ -1,7 +1,3 @@
-document
-  .querySelector("#add-product-form")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
-    console.log(e.target.elements.productTitle.value);
-    e.target.elements.productTitle.value = "";
-  });
+document.querySelector("#checkbox").addEventListener("change", function (e) {
+  console.log(e.target.checked);
+});
