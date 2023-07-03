@@ -1,13 +1,35 @@
-// const product = {
-//   title: "Book",
-//   price: 70,
-// };
+let products = getSaveProducts();
 
-// const productJSON = JSON.stringify(product);
-// console.log(productJSON);
+const filters = {
+  searchItem: "",
+  availableProducts: false,
+};
 
-// localStorage.setItem("product", productJSON);
+renderProducts(products, filters);
 
-const productJSON = localStorage.getItem("product");
-const product = JSON.parse(productJSON);
-console.log(product.title);
+document
+  .querySelector("#search-products")
+  .addEventListener("input", function (e) {
+    filters.searchItem = e.target.value;
+    renderProducts(products, filters);
+  });
+
+document
+  .querySelector("#add-product-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+    products.push({
+      title: e.target.elements.productTitle.value,
+      exists: true,
+    });
+    saveProducts(products);
+    renderProducts(products, filters);
+    e.target.elements.productTitle.value = "";
+  });
+
+document
+  .querySelector("#available-products")
+  .addEventListener("change", function (e) {
+    filters.availableProducts = e.target.checked;
+    renderProducts(products, filters);
+  });
