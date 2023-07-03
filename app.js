@@ -15,7 +15,12 @@ const renderProducts = function (products, filters) {
       .toLocaleLowerCase()
       .includes(filters.searchItem.toLocaleLowerCase());
   });
-  console.log(filteredProduct);
+  document.querySelector("#products").innerHTML = "";
+  filteredProduct.forEach(function (i) {
+    const productEl = document.createElement("p");
+    productEl.textContent = i.title;
+    document.querySelector("#products").appendChild(productEl);
+  });
 };
 
 renderProducts(products, filters);
