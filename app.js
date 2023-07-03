@@ -1,3 +1,4 @@
-document.querySelector("#sort").addEventListener("change", function (e) {
-  console.log(e.target.value);
-});
+localStorage.setItem("product", "Book");
+// console.log(localStorage.getItem("product"));
+// localStorage.removeItem("product");
+localStorage.clear();
