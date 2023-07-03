@@ -1,12 +1,25 @@
-const products = [];
+const products = [
+  { title: "Book 1", exist: true },
+  { title: "Book 2", exist: false },
+  { title: "Book 3", exist: true },
+  { title: "Book 4", exist: false },
+];
 
 const filters = {
   searchItem: "",
+  availableProducts: false,
 };
 
 const renderProducts = function (products, filters) {
-  const filteredProducts = products.filter(function (i) {
+  let filteredProducts = products.filter(function (i) {
     return i.title.toLowerCase().includes(filters.searchItem.toLowerCase());
+  });
+  filteredProducts = filteredProducts.filter(function (i) {
+    if (filters.availableProducts) {
+      return i.exist;
+    } else {
+      return true;
+    }
   });
   document.querySelector("#products").innerHTML = "";
   filteredProducts.forEach(function (i) {
@@ -35,4 +48,11 @@ document
     });
     renderProducts(products, filters);
     e.target.elements.productTitle.value = "";
+  });
+
+document
+  .querySelector("#available-products")
+  .addEventListener("change", function (e) {
+    filters.availableProducts = e.target.checked;
+    renderProducts(products, filters);
   });
