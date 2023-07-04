@@ -5,12 +5,13 @@
 //   }
 // });
 
-const productItem = [
-  { title: "Book1", exist: true },
-  { title: "Book2", exist: false },
-  { title: "Book3", exist: true },
-  { title: "Book4", exist: false },
-];
+// const productItem = [
+//   { title: "Book1", exist: true },
+//   { title: "Book2", exist: false },
+//   { title: "Book3", exist: true },
+//   { title: "Book4", exist: false },
+// ];
+
 // const test = [];
 // productItem.forEach(function (i) {
 //   const newParagraph = document.createElement("p");
@@ -22,16 +23,22 @@ const productItem = [
 // });
 // console.log(test.length);
 
-const availableProduct = productItem.filter(function (i) {
-  return i.exist === true;
-});
+// const availableProduct = productItem.filter(function (i) {
+//   return i.exist === true;
+// });
 
-const message = document.createElement("h4");
-message.textContent = `Number of available product is : ${availableProduct.length}`;
-document.querySelector("body").appendChild(message);
+// const message = document.createElement("h4");
+// message.textContent = `Number of available product is : ${availableProduct.length}`;
+// document.querySelector("body").appendChild(message);
 
-productItem.forEach(function (i) {
-  const test = document.createElement("h5");
-  test.textContent = i.title;
-  document.querySelector("body").appendChild(test);
-});
+// productItem.forEach(function (i) {
+//   const test = document.createElement("h5");
+//   test.textContent = i.title;
+//   document.querySelector("body").appendChild(test);
+// });
+
+document
+  .querySelector("#search-products")
+  .addEventListener("input", function (e) {
+    console.log(e.target.value);
+  });
