@@ -37,8 +37,52 @@
 //   document.querySelector("body").appendChild(test);
 // });
 
+// document
+//   .querySelector("#search-products")
+//   .addEventListener("input", function (e) {
+//     console.log(e.target.value);
+//   });
+
+const products = [
+  {
+    title: "Node.js Design Patterns",
+  },
+  {
+    title: "Functional web Development with React and Redux",
+  },
+  {
+    title: "You Don't Know JS: Async & performance",
+  },
+  {
+    title: "Functional React",
+  },
+  {
+    title: "You Don't Know JS: Scope & Closures",
+  },
+];
+
 document
   .querySelector("#search-products")
   .addEventListener("input", function (e) {
-    console.log(e.target.value);
+    filters.searchItem = e.target.value;
+    renderProducts(products, filters);
   });
+
+const filters = {
+  searchItem: "",
+};
+
+const renderProducts = function (products, filters) {
+  const filteredProducts = products.filter(function (i) {
+    return i.title.toLowerCase().includes(filters.searchItem.toLowerCase());
+  });
+
+  document.querySelector("#products").innerHTML = "";
+  filteredProducts.forEach(function (i) {
+    const productEl = document.createElement("p");
+    productEl.textContent = i.title;
+    document.querySelector("#products").appendChild(productEl);
+  });
+};
+
+renderProducts(products, filters);
