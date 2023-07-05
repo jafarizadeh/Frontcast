@@ -1,5 +1,9 @@
 const titleElement = document.querySelector("#product-title");
 const priceElement = document.querySelector("#product-price");
+<<<<<<< HEAD
+=======
+const removeElement = document.querySelector("#remove-product");
+>>>>>>> challenge
 
 const productId = location.hash.substring(1);
 const products = getSaveProducts();
@@ -13,3 +17,22 @@ if (product === undefined) {
 
 titleElement.value = product.title;
 priceElement.value = product.price;
+<<<<<<< HEAD
+=======
+
+titleElement.addEventListener("input", function (e) {
+  product.title = e.target.value;
+  saveProducts(products);
+});
+
+priceElement.addEventListener("input", function (e) {
+  product.price = e.target.value;
+  saveProducts(products);
+});
+
+removeElement.addEventListener("click", function (e) {
+  removeProduct(product.id);
+  saveProducts(products);
+  location.assign("./index.html");
+});
+>>>>>>> challenge
