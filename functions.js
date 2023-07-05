@@ -11,6 +11,15 @@ const saveProducts = function (products) {
   localStorage.setItem("products", JSON.stringify(products));
 };
 
+const removeProduct = function (id) {
+  const productIndex = products.findIndex(function (i) {
+    return i.id === id;
+  });
+  if (productIndex > -1) {
+    products.splice(productIndex, 1);
+  }
+};
+
 const renderProducts = function (products, filters) {
   let filteredProducts = products.filter(function (i) {
     return i.title.toLowerCase().includes(filters.searchItem.toLowerCase());
@@ -42,6 +51,11 @@ const createProductDOM = function (product) {
 
   removeButton.textContent = "Remove";
   productEl.appendChild(removeButton);
+  removeButton.addEventListener("click", function () {
+    removeProduct(product.id);
+    saveProducts(products);
+    renderProducts(products, filters);
+  });
 
   return productEl;
 };
