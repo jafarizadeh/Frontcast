@@ -87,17 +87,17 @@
 
 // renderProducts(products, filters);
 
-const products = [
-  { title: "Book1", exist: true },
-  { title: "Book2", exist: false },
-  { title: "Book3", exist: true },
-  { title: "Book4", exist: false },
-];
+let products = [];
 
 const filters = {
   searchItem: "",
   availableProducts: false,
 };
+
+const productJSON = localStorage.getItem("products");
+if (productJSON !== null) {
+  products = JSON.parse(productJSON);
+}
 
 const renderProducts = function (products, filters) {
   let filteredProducts = products.filter(function (i) {
@@ -135,6 +135,7 @@ document
       title: e.target.elements.productTitle.value,
       exists: true,
     });
+    localStorage.setItem("products", JSON.stringify(products));
     renderProducts(products, filters);
     e.target.elements.productTitle.value = "";
   });
