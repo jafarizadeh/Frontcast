@@ -19,6 +19,7 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
     products.push({
+      id: uuidv4(),
       title: e.target.elements.productTitle.value,
       exists: true,
     });
