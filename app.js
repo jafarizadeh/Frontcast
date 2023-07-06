@@ -19,11 +19,14 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
     const id = uuidv4();
+    const timeStamp = moment().valueOf();
     products.push({
       id: id,
       title: e.target.elements.productTitle.value,
       price: "",
       exist: true,
+      created: timeStamp,
+      updated: timeStamp,
     });
     saveProducts(products);
     renderProducts(products, filters);
@@ -36,11 +39,9 @@ document
     filters.availableProducts = e.target.checked;
     renderProducts(products, filters);
   });
-  window.addEventListener("storage", function (e) {
-    if (e.key === "products") {
-      products = JSON.parse(e.newValue);
-      renderProducts(products, filters);
-    }
-  });
-  
- 
+window.addEventListener("storage", function (e) {
+  if (e.key === "products") {
+    products = JSON.parse(e.newValue);
+    renderProducts(products, filters);
+  }
+});

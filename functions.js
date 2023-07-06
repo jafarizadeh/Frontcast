@@ -75,3 +75,7 @@ const createProductDOM = function (product) {
 
   return productEl;
 };
+
+const lastEditMessage = function (timeStamp) {
+  return `Lase Edit: ${moment(timeStamp).fromNow()}`;
+};
