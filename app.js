@@ -36,3 +36,11 @@ document
     filters.availableProducts = e.target.checked;
     renderProducts(products, filters);
   });
+  window.addEventListener("storage", function (e) {
+    if (e.key === "products") {
+      products = JSON.parse(e.newValue);
+      renderProducts(products, filters);
+    }
+  });
+  
+ 

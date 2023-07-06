@@ -4,8 +4,8 @@ const priceElement = document.querySelector("#product-price");
 const removeElement = document.querySelector("#remove-product");
 
 const productId = location.hash.substring(1);
-const products = getSaveProducts();
-const product = products.find(function (i) {
+let products = getSaveProducts();
+let product = products.find(function (i) {
   return i.id === productId;
 });
 
@@ -31,3 +31,18 @@ removeElement.addEventListener("click", function (e) {
   saveProducts(products);
   location.assign("./index.html");
 });
+
+window.addEventListener("storage", function (e) {
+    if (e.key === "products") {
+      products = JSON.parse(e.newValue);
+      product = products.find(function (i) {
+        return i.id === productId;
+      });
+      if (product === undefined) {
+        location.assign("/index.html");
+      }
+  
+      titleElement.value = product.title;
+      priceElement.value = product.price;
+    }
+  });
